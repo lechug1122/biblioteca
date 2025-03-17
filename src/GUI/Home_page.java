@@ -4,9 +4,14 @@
  */
 package GUI;
 
+import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -18,11 +23,8 @@ public class Home_page extends javax.swing.JFrame {
      * Creates new form Home_page
      */
     public Home_page() {
-        //Imagen del incono del programa 
-        // Esto quita las decoraciones de la ventana
-        
-        setIconImage(new ImageIcon(getClass().getResource("/IMG/icon.png")).getImage());
-        setResizable(false);
+        setUndecorated(true); // Elimina la barra de título y bordes
+            this.setExtendedState(MAXIMIZED_BOTH);
         initComponents();
     }
 
@@ -36,16 +38,17 @@ public class Home_page extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 1021, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 767, Short.MAX_VALUE)
         );
 
         pack();

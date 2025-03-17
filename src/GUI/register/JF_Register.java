@@ -23,7 +23,9 @@ public class JF_Register extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
        TextPrompt Number_trabajadores = new TextPrompt("N° de trabajador", JText_Number_traba);
-        
+       TextPrompt Nombre = new TextPrompt("Nombre", JText_nombre);
+       TextPrompt apellido1 = new TextPrompt("Primer apellido", JText_apellido);
+       TextPrompt apellido2 = new TextPrompt("Segundo apellido", JText_apellido2);
          setIconImage(new ImageIcon(getClass().getResource("/IMG/icon.png")).getImage()); //incono del programa
                 // Validacion de entrada de numero de control
         JText_Number_traba.addKeyListener(new KeyAdapter() {
@@ -37,6 +39,8 @@ public class JF_Register extends javax.swing.JFrame {
                 }
             }
         });
+        
+       
     }
 
     /**
@@ -57,16 +61,16 @@ public class JF_Register extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         borderButton1 = new Funtions.Buttons.BorderButton();
         borderButton2 = new Funtions.Buttons.BorderButton();
-        JText_Number_traba1 = new javax.swing.JTextField();
+        JText_apellido = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        JText_Number_traba3 = new javax.swing.JTextField();
+        JText_nombre = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        JText_Number_traba4 = new javax.swing.JTextField();
+        JText_apellido2 = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        JComboBox_dia = new javax.swing.JComboBox<>();
+        JComboBox_mes = new javax.swing.JComboBox<>();
+        JComboBox_year = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -151,55 +155,52 @@ public class JF_Register extends javax.swing.JFrame {
             }
         });
 
-        JText_Number_traba1.setBackground(new java.awt.Color(148, 156, 220));
-        JText_Number_traba1.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
-        JText_Number_traba1.setForeground(new java.awt.Color(255, 255, 255));
-        JText_Number_traba1.setText("Nombre");
-        JText_Number_traba1.setBorder(null);
-        JText_Number_traba1.addMouseListener(new java.awt.event.MouseAdapter() {
+        JText_apellido.setBackground(new java.awt.Color(148, 156, 220));
+        JText_apellido.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
+        JText_apellido.setForeground(new java.awt.Color(255, 255, 255));
+        JText_apellido.setBorder(null);
+        JText_apellido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JText_Number_traba1MouseClicked(evt);
+                JText_apellidoMouseClicked(evt);
             }
         });
-        JText_Number_traba1.addActionListener(new java.awt.event.ActionListener() {
+        JText_apellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JText_Number_traba1ActionPerformed(evt);
+                JText_apellidoActionPerformed(evt);
             }
         });
 
         jSeparator2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        JText_Number_traba3.setBackground(new java.awt.Color(148, 156, 220));
-        JText_Number_traba3.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
-        JText_Number_traba3.setForeground(new java.awt.Color(255, 255, 255));
-        JText_Number_traba3.setText("Nombre");
-        JText_Number_traba3.setBorder(null);
-        JText_Number_traba3.addMouseListener(new java.awt.event.MouseAdapter() {
+        JText_nombre.setBackground(new java.awt.Color(148, 156, 220));
+        JText_nombre.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
+        JText_nombre.setForeground(new java.awt.Color(255, 255, 255));
+        JText_nombre.setBorder(null);
+        JText_nombre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JText_Number_traba3MouseClicked(evt);
+                JText_nombreMouseClicked(evt);
             }
         });
-        JText_Number_traba3.addActionListener(new java.awt.event.ActionListener() {
+        JText_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JText_Number_traba3ActionPerformed(evt);
+                JText_nombreActionPerformed(evt);
             }
         });
 
         jSeparator3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        JText_Number_traba4.setBackground(new java.awt.Color(148, 156, 220));
-        JText_Number_traba4.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
-        JText_Number_traba4.setForeground(new java.awt.Color(255, 255, 255));
-        JText_Number_traba4.setText("Nombre");
-        JText_Number_traba4.setBorder(null);
-        JText_Number_traba4.addMouseListener(new java.awt.event.MouseAdapter() {
+        JText_apellido2.setBackground(new java.awt.Color(148, 156, 220));
+        JText_apellido2.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
+        JText_apellido2.setForeground(new java.awt.Color(255, 255, 255));
+        JText_apellido2.setBorder(null);
+        JText_apellido2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JText_Number_traba4MouseClicked(evt);
+                JText_apellido2MouseClicked(evt);
             }
         });
-        JText_Number_traba4.addActionListener(new java.awt.event.ActionListener() {
+        JText_apellido2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JText_Number_traba4ActionPerformed(evt);
+                JText_apellido2ActionPerformed(evt);
             }
         });
 
@@ -209,11 +210,25 @@ public class JF_Register extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Fecha de nacimiento");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        String[] dias = new String[31];
+        for (int i = 0; i < 31; i++) {
+            dias[i] = String.valueOf(i + 1);
+        }
+        JComboBox_dia.setModel(new javax.swing.DefaultComboBoxModel<>(dias)
+        );
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        // Crear JComboBox para los meses (1-12)
+        String[] meses = new String[12];
+        for (int i = 0; i < 12; i++) {
+            meses[i] = String.valueOf(i + 1);
+        }
+        JComboBox_mes.setModel(new javax.swing.DefaultComboBoxModel<>(meses));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        String[] years = new String[201];
+        for (int i = 0; i <= 200; i++) {
+            years[i] = String.valueOf(1900 + i);
+        }
+        JComboBox_year.setModel(new javax.swing.DefaultComboBoxModel<>(years));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -237,7 +252,7 @@ public class JF_Register extends javax.swing.JFrame {
                                         .addComponent(JText_Number_traba, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                                         .addComponent(jSeparator1)
                                         .addComponent(borderButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(JText_Number_traba1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(JText_apellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,13 +260,13 @@ public class JF_Register extends javax.swing.JFrame {
                                             .addGap(49, 49, 49)
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(jSeparator2)
-                                                .addComponent(JText_Number_traba3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(JText_nombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(JText_Number_traba4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(JText_apellido2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,11 +274,11 @@ public class JF_Register extends javax.swing.JFrame {
                                         .addGap(6, 6, 6)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(JComboBox_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(JComboBox_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(JComboBox_year, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -282,8 +297,8 @@ public class JF_Register extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JText_Number_traba1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JText_Number_traba3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JText_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JText_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -291,15 +306,15 @@ public class JF_Register extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(JText_Number_traba4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(JText_apellido2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(JComboBox_dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JComboBox_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JComboBox_year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(borderButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
@@ -344,29 +359,29 @@ public class JF_Register extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_borderButton2ActionPerformed
 
-    private void JText_Number_traba1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JText_Number_traba1MouseClicked
+    private void JText_apellidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JText_apellidoMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_JText_Number_traba1MouseClicked
+    }//GEN-LAST:event_JText_apellidoMouseClicked
 
-    private void JText_Number_traba1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JText_Number_traba1ActionPerformed
+    private void JText_apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JText_apellidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JText_Number_traba1ActionPerformed
+    }//GEN-LAST:event_JText_apellidoActionPerformed
 
-    private void JText_Number_traba3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JText_Number_traba3MouseClicked
+    private void JText_nombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JText_nombreMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_JText_Number_traba3MouseClicked
+    }//GEN-LAST:event_JText_nombreMouseClicked
 
-    private void JText_Number_traba3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JText_Number_traba3ActionPerformed
+    private void JText_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JText_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JText_Number_traba3ActionPerformed
+    }//GEN-LAST:event_JText_nombreActionPerformed
 
-    private void JText_Number_traba4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JText_Number_traba4MouseClicked
+    private void JText_apellido2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JText_apellido2MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_JText_Number_traba4MouseClicked
+    }//GEN-LAST:event_JText_apellido2MouseClicked
 
-    private void JText_Number_traba4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JText_Number_traba4ActionPerformed
+    private void JText_apellido2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JText_apellido2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JText_Number_traba4ActionPerformed
+    }//GEN-LAST:event_JText_apellido2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -412,16 +427,16 @@ public class JF_Register extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Image;
+    private javax.swing.JComboBox<String> JComboBox_dia;
+    private javax.swing.JComboBox<String> JComboBox_mes;
+    private javax.swing.JComboBox<String> JComboBox_year;
     private javax.swing.JTextField JText_Number_traba;
-    private javax.swing.JTextField JText_Number_traba1;
-    private javax.swing.JTextField JText_Number_traba3;
-    private javax.swing.JTextField JText_Number_traba4;
+    private javax.swing.JTextField JText_apellido;
+    private javax.swing.JTextField JText_apellido2;
+    private javax.swing.JTextField JText_nombre;
     private javax.swing.JPanel Jpanel_image;
     private Funtions.Buttons.BorderButton borderButton1;
     private Funtions.Buttons.BorderButton borderButton2;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import Funtions.Buttons.BorderButton;
 import java.awt.Font;
 import Funtions.Text.TextPrompt;
+import GUI.Menu_use;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -263,7 +264,10 @@ public class JF_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_JText_Number_trabaActionPerformed
 
     private void borderButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borderButton1ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        Menu_use menu = new Menu_use();
+        menu.setVisible(true);
+        menu.setLocationRelativeTo(null);
     }//GEN-LAST:event_borderButton1ActionPerformed
 
     private void JText_Number_trabaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JText_Number_trabaMouseClicked
