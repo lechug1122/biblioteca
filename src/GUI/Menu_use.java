@@ -66,6 +66,11 @@ public class Menu_use extends javax.swing.JFrame {
         borderButton1.setColorClick(new java.awt.Color(51, 27, 220));
         borderButton1.setColorOver(new java.awt.Color(0, 0, 255));
         borderButton1.setRadius(30);
+        borderButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borderButton1ActionPerformed(evt);
+            }
+        });
 
         borderButton2.setBackground(new java.awt.Color(84, 92, 179));
         borderButton2.setBorder(null);
@@ -152,6 +157,12 @@ public class Menu_use extends javax.swing.JFrame {
        Home_page home = new Home_page();
        home.setVisible(true);
     }//GEN-LAST:event_borderButton2ActionPerformed
+
+    private void borderButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borderButton1ActionPerformed
+        inputs_library jframe = new inputs_library();
+        jframe.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_borderButton1ActionPerformed
 
     /**
      * @param args the command line arguments
