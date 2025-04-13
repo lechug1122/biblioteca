@@ -27,8 +27,8 @@ public class JF_Login extends javax.swing.JFrame {
     public JF_Login() {
         initComponents();
         setResizable(false);
-        TextPrompt Number_trabajadores = new TextPrompt("N° de trabajador", JText_Number_traba);
-        TextPrompt password = new TextPrompt("Contraseña", jPasswordField1);
+        TextPrompt Number_trabajadores = new TextPrompt("N° de trabajador", JText_Number_traba, Color.WHITE);
+        TextPrompt password = new TextPrompt("Contraseña", jPasswordField1, Color.WHITE);
         setIconImage(new ImageIcon(getClass().getResource("/IMG/icon.png")).getImage()); //incono del programa
 
         // Validacion de entrada de numero de control

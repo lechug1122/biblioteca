@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import Funtions.Buttons.BorderButton;
 import java.awt.Font;
 import Funtions.Text.TextPrompt;
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 /**
@@ -22,7 +23,7 @@ public class JF_Reset_password extends javax.swing.JFrame {
     public JF_Reset_password() {
         initComponents();
         setResizable(false);
-       TextPrompt Number_trabajadores = new TextPrompt("N° de trabajador", JText_Number_traba);
+       TextPrompt Number_trabajadores = new TextPrompt("N° de trabajador", JText_Number_traba, Color.WHITE);
         
          setIconImage(new ImageIcon(getClass().getResource("/IMG/icon.png")).getImage()); //incono del programa
                 // Validacion de entrada de numero de control
