@@ -4,6 +4,7 @@
  */
 package biblioteca;
 
+import BD.Connectionpsql;
 import GUI.Home_page;
 import GUI.LoadScreen;
 import GUI.register.JF_Login;
@@ -14,6 +15,8 @@ import GUI.register.JF_Login;
  */
 public class Biblioteca {
     public static void main(String[] args) {
+        Connectionpsql conexion = new Connectionpsql();
+        conexion.getConnection();
         // TODO code application logic here
        LoadScreen loadSc = new LoadScreen(); 
         JF_Login loginscreen = new JF_Login();

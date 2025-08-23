@@ -4,18 +4,48 @@
  */
 package GUI.register;
 
+import BD.Register_works;
 import javax.swing.ImageIcon;
 import Funtions.Buttons.BorderButton;
 import java.awt.Font;
 import Funtions.Text.TextPrompt;
+import Funtions.Utils;
+import JDialog.Register_complete;
+import JDialog.User_exits;
+import JDialog.Validate_email;
+import JDialog.campo_vacio;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.time.LocalDate;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
+
 /**
  *
  * @author luisc
  */
 public class JF_Register extends javax.swing.JFrame {
+
+    //Variables 
+    public int N_work;
+    public String Name;
+    public String one_lastname;
+    public String two_lastname;
+    public int day;
+    public int month;
+    public int year;
+    public String last_name_complete;
+    public String email_inst;
+    public char[] pass;
+    public int type_user = 1;
 
     /**
      * Creates new form JF_Login
@@ -23,12 +53,14 @@ public class JF_Register extends javax.swing.JFrame {
     public JF_Register() {
         initComponents();
         setResizable(false);
-       TextPrompt Number_trabajadores = new TextPrompt("N° de trabajador", JText_Number_traba, Color.WHITE);
-       TextPrompt Nombre = new TextPrompt("Nombre", JText_nombre, Color.WHITE);
-       TextPrompt apellido1 = new TextPrompt("Primer apellido", JText_apellido, Color.WHITE);
-       TextPrompt apellido2 = new TextPrompt("Segundo apellido", JText_apellido2, Color.WHITE);
-         setIconImage(new ImageIcon(getClass().getResource("/IMG/icon.png")).getImage()); //incono del programa
-                // Validacion de entrada de numero de control
+        TextPrompt Number_trabajadores = new TextPrompt("N° de trabajador", JText_Number_traba, Color.WHITE);
+        TextPrompt email_works = new TextPrompt("Correo electronico", JText_email, Color.WHITE);
+        TextPrompt Nombre = new TextPrompt("Nombre", JText_nombre, Color.WHITE);
+        TextPrompt apellido1 = new TextPrompt("Primer apellido", JText_apellido, Color.WHITE);
+        TextPrompt apellido2 = new TextPrompt("Segundo apellido", JText_apellido2, Color.WHITE);
+        TextPrompt password = new TextPrompt("Contraseña", jPasswordField1, Color.yellow);
+        setIconImage(new ImageIcon(getClass().getResource("/IMG/icon.png")).getImage()); //incono del programa
+        // Validacion de entrada de numero de control
         JText_Number_traba.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -40,8 +72,26 @@ public class JF_Register extends javax.swing.JFrame {
                 }
             }
         });
-        
-       
+        Action EnterAction = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+
+                if (focusOwner == borderButton1) {
+                    borderButton1.doClick();
+                } else if (focusOwner == borderButton2) {
+                    borderButton2.doClick();
+                }
+            }
+        };
+
+        // Asociar cada tecla de función con su respectiva acción
+        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap actionMap = getRootPane().getActionMap();
+
+        inputMap.put(KeyStroke.getKeyStroke("ENTER"), "EnterAction");
+        actionMap.put("EnterAction", EnterAction);
+
     }
 
     /**
@@ -72,6 +122,10 @@ public class JF_Register extends javax.swing.JFrame {
         JComboBox_dia = new javax.swing.JComboBox<>();
         JComboBox_mes = new javax.swing.JComboBox<>();
         JComboBox_year = new javax.swing.JComboBox<>();
+        JText_email = new javax.swing.JTextField();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -217,6 +271,11 @@ public class JF_Register extends javax.swing.JFrame {
         }
         JComboBox_dia.setModel(new javax.swing.DefaultComboBoxModel<>(dias)
         );
+        JComboBox_dia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JComboBox_diaActionPerformed(evt);
+            }
+        });
 
         // Crear JComboBox para los meses (1-12)
         String[] meses = new String[12];
@@ -224,12 +283,51 @@ public class JF_Register extends javax.swing.JFrame {
             meses[i] = String.valueOf(i + 1);
         }
         JComboBox_mes.setModel(new javax.swing.DefaultComboBoxModel<>(meses));
+        JComboBox_mes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JComboBox_mesActionPerformed(evt);
+            }
+        });
 
         String[] years = new String[201];
         for (int i = 0; i <= 200; i++) {
             years[i] = String.valueOf(1900 + i);
         }
         JComboBox_year.setModel(new javax.swing.DefaultComboBoxModel<>(years));
+        JComboBox_year.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JComboBox_yearActionPerformed(evt);
+            }
+        });
+
+        JText_email.setBackground(new java.awt.Color(148, 156, 220));
+        JText_email.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
+        JText_email.setForeground(new java.awt.Color(255, 255, 255));
+        JText_email.setBorder(null);
+        JText_email.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JText_emailMouseClicked(evt);
+            }
+        });
+        JText_email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JText_emailActionPerformed(evt);
+            }
+        });
+
+        jSeparator5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jSeparator6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jPasswordField1.setBackground(new java.awt.Color(148, 156, 220));
+        jPasswordField1.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
+        jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
+        jPasswordField1.setBorder(null);
+        jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPasswordField1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -243,31 +341,25 @@ public class JF_Register extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(borderButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                                        .addComponent(JText_Number_traba, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                                        .addComponent(jSeparator1)
-                                        .addComponent(borderButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(JText_apellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(borderButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                .addComponent(JText_Number_traba, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                .addComponent(jSeparator1)
+                                .addComponent(borderButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(JText_email)
+                                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(49, 49, 49)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jSeparator2)
-                                                .addComponent(JText_nombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(JText_apellido2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jSeparator2)
+                                            .addComponent(JText_nombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(JText_apellido2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,7 +371,11 @@ public class JF_Register extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(JComboBox_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(JComboBox_year, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(JComboBox_year, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(JText_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -296,7 +392,11 @@ public class JF_Register extends javax.swing.JFrame {
                 .addComponent(JText_Number_traba, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JText_email, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JText_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JText_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -316,11 +416,15 @@ public class JF_Register extends javax.swing.JFrame {
                         .addComponent(JComboBox_dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(JComboBox_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(JComboBox_year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(borderButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addComponent(borderButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(116, 116, 116))
+                .addGap(44, 44, 44))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -342,19 +446,75 @@ public class JF_Register extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void JText_Number_trabaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JText_Number_trabaActionPerformed
-        
+        //se almacena los datos en variables 
+
+
     }//GEN-LAST:event_JText_Number_trabaActionPerformed
 
     private void borderButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borderButton1ActionPerformed
         // TODO add your handling code here:
+
+        Name = JText_nombre.getText();
+        one_lastname = JText_apellido.getText();
+        two_lastname = JText_apellido2.getText();
+        last_name_complete = one_lastname + " " + two_lastname;
+        email_inst = JText_email.getText();
+        pass = jPasswordField1.getPassword();
+        String nWorkText = JText_Number_traba.getText().trim();
+        
+        if (Name.trim().isEmpty() || one_lastname.trim().isEmpty() || two_lastname.trim().isEmpty() || email_inst.trim().isEmpty() || pass.length == 0 || nWorkText.trim().isEmpty()) {
+
+            campo_vacio dialog = new campo_vacio(null, true);
+            dialog.setVisible(true);
+        } else {
+            if(Utils.correoValido(email_inst)){
+             
+              // 🔹 Verificamos si ya existe el usuario
+        if (!Register_works.existeUsuario(N_work, last_name_complete, email_inst)) {
+            N_work = Integer.parseInt(JText_Number_traba.getText());
+            System.out.println(N_work);
+            System.out.println(Name);
+            System.out.println(one_lastname);
+            System.out.println(two_lastname);
+            System.out.println(last_name_complete);
+            System.out.println(email_inst);
+            System.out.println("dia: " + day + " mes: " + month + " año: " + year);
+            String passwordstring = new String(pass);
+            System.out.println("contraseña = " + passwordstring);
+
+            String hashedPassword = Utils.hashPassword(passwordstring);
+            LocalDate birthDate = LocalDate.of(year, month, day);
+
+            Register_works reg = new Register_works(Name, last_name_complete, email_inst, null, N_work, type_user, hashedPassword,birthDate);
+            Register_complete dialog = new Register_complete(null, true);
+            dialog.setVisible(true);
+
+            JF_Login JF_Login = new JF_Login();
+            JF_Login.setVisible(true);
+            JF_Login.setLocationRelativeTo(null);
+            this.dispose();
+        }else{
+                  User_exits dialog = new User_exits(null, true);
+                    dialog.setVisible(true);
+
+        }
+            }else{
+              Validate_email dialog = new Validate_email(null, true);
+            dialog.setVisible(true);
+
+            }
+           
+        }
+
+
     }//GEN-LAST:event_borderButton1ActionPerformed
 
     private void JText_Number_trabaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JText_Number_trabaMouseClicked
-       
+
     }//GEN-LAST:event_JText_Number_trabaMouseClicked
 
     private void borderButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borderButton2ActionPerformed
-            JF_Login JF_Login = new JF_Login();
+        JF_Login JF_Login = new JF_Login();
         JF_Login.setVisible(true);
         JF_Login.setLocationRelativeTo(null);
         this.dispose();
@@ -383,6 +543,32 @@ public class JF_Register extends javax.swing.JFrame {
     private void JText_apellido2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JText_apellido2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JText_apellido2ActionPerformed
+
+    private void JText_emailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JText_emailMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JText_emailMouseClicked
+
+    private void JText_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JText_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JText_emailActionPerformed
+
+    private void JComboBox_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboBox_diaActionPerformed
+        // TODO add your handling code here:
+        day = Integer.parseInt(JComboBox_dia.getSelectedItem().toString());
+    }//GEN-LAST:event_JComboBox_diaActionPerformed
+
+    private void JComboBox_mesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboBox_mesActionPerformed
+        month = Integer.parseInt(JComboBox_mes.getSelectedItem().toString());
+    }//GEN-LAST:event_JComboBox_mesActionPerformed
+
+    private void JComboBox_yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboBox_yearActionPerformed
+        // TODO add your handling code here:
+        year = Integer.parseInt(JComboBox_year.getSelectedItem().toString());
+    }//GEN-LAST:event_JComboBox_yearActionPerformed
+
+    private void jPasswordField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField1MouseClicked
+
+    }//GEN-LAST:event_jPasswordField1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -434,6 +620,7 @@ public class JF_Register extends javax.swing.JFrame {
     private javax.swing.JTextField JText_Number_traba;
     private javax.swing.JTextField JText_apellido;
     private javax.swing.JTextField JText_apellido2;
+    private javax.swing.JTextField JText_email;
     private javax.swing.JTextField JText_nombre;
     private javax.swing.JPanel Jpanel_image;
     private Funtions.Buttons.BorderButton borderButton1;
@@ -442,9 +629,12 @@ public class JF_Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     // End of variables declaration//GEN-END:variables
 }

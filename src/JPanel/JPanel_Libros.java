@@ -4,6 +4,8 @@
  */
 package JPanel;
 
+import JPanel.JpanelLibros.JPanel_Eliminar;
+import JPanel.JpanelLibros.Jpaneles_modificar.JPanel_Modificar;
 import JPanel.JpanelLibros.JPanel_nuevo;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -98,6 +100,11 @@ timer.start(); // Inicia el timer
         btn_Modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JDialog/Images_JDialog_products/editar.png"))); // NOI18N
         btn_Modificar.setText("Modificar");
         btn_Modificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ModificarActionPerformed(evt);
+            }
+        });
 
         btn_Eliminar.setBackground(new java.awt.Color(255, 255, 255));
         btn_Eliminar.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
@@ -219,6 +226,20 @@ timer.start(); // Inicia el timer
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        JPanel_Eliminar pl = new JPanel_Eliminar();
+        pl.setLocation(0, 0);
+        pl.setSize(content.getWidth(), content.getHeight());
+        content.removeAll();
+        content.add(pl, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+
+        btn_nuevo.setEnabled(true);
+        btn_Modificar.setEnabled(true);
+        btn_Eliminar.setEnabled(false);
+        btn_Categorias.setEnabled(true);
+        btn_Importar.setEnabled(true);
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
@@ -235,6 +256,22 @@ timer.start(); // Inicia el timer
         btn_Categorias.setEnabled(true);
         btn_Importar.setEnabled(true);
     }//GEN-LAST:event_btn_nuevoActionPerformed
+
+    private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
+        // TODO add your handling code here:
+            JPanel_Modificar pl = new JPanel_Modificar();
+        pl.setLocation(0, 0);
+        pl.setSize(content.getWidth(), content.getHeight());
+        content.removeAll();
+        content.add(pl, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+        btn_nuevo.setEnabled(true);
+        btn_Modificar.setEnabled(false);
+        btn_Eliminar.setEnabled(true);
+        btn_Categorias.setEnabled(true);
+        btn_Importar.setEnabled(true);
+    }//GEN-LAST:event_btn_ModificarActionPerformed
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -244,22 +281,8 @@ timer.start(); // Inicia el timer
     private javax.swing.JButton btn_Modificar;
     private javax.swing.JButton btn_nuevo;
     private javax.swing.JPanel content;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel navbar;
     // End of variables declaration//GEN-END:variables

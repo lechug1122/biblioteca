@@ -27,29 +27,149 @@ public class JPanel_Estudiantes extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        navbar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        btn_nuevo = new javax.swing.JButton();
+        btn_Modificar = new javax.swing.JButton();
+        btn_Eliminar = new javax.swing.JButton();
+        btn_Categorias = new javax.swing.JButton();
+        btn_Importar = new javax.swing.JButton();
+        btn_Importar1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1027, 587));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Hola");
+        navbar.setBackground(new java.awt.Color(255, 153, 153));
+        navbar.setForeground(new java.awt.Color(204, 255, 102));
+
+        jLabel1.setFont(new java.awt.Font("Inter", 3, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Administracion de usuarios");
+
+        jPanel8.setBackground(new java.awt.Color(204, 204, 204));
+
+        btn_nuevo.setBackground(new java.awt.Color(255, 255, 255));
+        btn_nuevo.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btn_nuevo.setForeground(new java.awt.Color(0, 0, 0));
+        btn_nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JDialog/Images_JDialog_products/libro.png"))); // NOI18N
+        btn_nuevo.setText("Estudiantes");
+        btn_nuevo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_nuevoActionPerformed(evt);
+            }
+        });
+
+        btn_Modificar.setBackground(new java.awt.Color(255, 255, 255));
+        btn_Modificar.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btn_Modificar.setForeground(new java.awt.Color(0, 0, 0));
+        btn_Modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JDialog/Images_JDialog_products/editar.png"))); // NOI18N
+        btn_Modificar.setText("Profesores");
+        btn_Modificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ModificarActionPerformed(evt);
+            }
+        });
+
+        btn_Eliminar.setBackground(new java.awt.Color(255, 255, 255));
+        btn_Eliminar.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
+        btn_Eliminar.setForeground(new java.awt.Color(0, 0, 0));
+        btn_Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JDialog/Images_JDialog_products/eliminar-producto.png"))); // NOI18N
+        btn_Eliminar.setText("Añadir");
+        btn_Eliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EliminarjButton3ActionPerformed(evt);
+            }
+        });
+
+        btn_Categorias.setBackground(new java.awt.Color(255, 255, 255));
+        btn_Categorias.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
+        btn_Categorias.setForeground(new java.awt.Color(0, 0, 0));
+        btn_Categorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JDialog/Images_JDialog_products/catalogar.png"))); // NOI18N
+        btn_Categorias.setText("Modificar");
+        btn_Categorias.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btn_Importar.setBackground(new java.awt.Color(255, 255, 255));
+        btn_Importar.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
+        btn_Importar.setForeground(new java.awt.Color(0, 0, 0));
+        btn_Importar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JDialog/Images_JDialog_products/importar.png"))); // NOI18N
+        btn_Importar.setText("Importar");
+        btn_Importar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btn_Importar1.setBackground(new java.awt.Color(255, 255, 255));
+        btn_Importar1.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
+        btn_Importar1.setForeground(new java.awt.Color(0, 0, 0));
+        btn_Importar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JDialog/Images_JDialog_products/importar.png"))); // NOI18N
+        btn_Importar1.setText("Exportar Datos");
+        btn_Importar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_Categorias, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_Importar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_Importar1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(865, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_nuevo)
+                    .addComponent(btn_Modificar)
+                    .addComponent(btn_Eliminar)
+                    .addComponent(btn_Categorias)
+                    .addComponent(btn_Importar)
+                    .addComponent(btn_Importar1))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout navbarLayout = new javax.swing.GroupLayout(navbar);
+        navbar.setLayout(navbarLayout);
+        navbarLayout.setHorizontalGroup(
+            navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navbarLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel1))
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        navbarLayout.setVerticalGroup(
+            navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navbarLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(232, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(375, 375, 375))
+            .addComponent(navbar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(271, 271, 271)
-                .addComponent(jLabel1)
-                .addContainerGap(300, Short.MAX_VALUE))
+                .addComponent(navbar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 508, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -64,9 +184,44 @@ public class JPanel_Estudiantes extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_EliminarjButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarjButton3ActionPerformed
+
+        btn_nuevo.setEnabled(true);
+        btn_Modificar.setEnabled(true);
+        btn_Eliminar.setEnabled(false);
+        btn_Categorias.setEnabled(true);
+        btn_Importar.setEnabled(true);
+    }//GEN-LAST:event_btn_EliminarjButton3ActionPerformed
+
+    private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
+
+        btn_nuevo.setEnabled(true);
+        btn_Modificar.setEnabled(false);
+        btn_Eliminar.setEnabled(true);
+        btn_Categorias.setEnabled(true);
+        btn_Importar.setEnabled(true);
+    }//GEN-LAST:event_btn_ModificarActionPerformed
+
+    private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
+
+        btn_nuevo.setEnabled(false);
+        btn_Modificar.setEnabled(true);
+        btn_Eliminar.setEnabled(true);
+        btn_Categorias.setEnabled(true);
+        btn_Importar.setEnabled(true);
+    }//GEN-LAST:event_btn_nuevoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Categorias;
+    private javax.swing.JButton btn_Eliminar;
+    private javax.swing.JButton btn_Importar;
+    private javax.swing.JButton btn_Importar1;
+    private javax.swing.JButton btn_Modificar;
+    private javax.swing.JButton btn_nuevo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel navbar;
     // End of variables declaration//GEN-END:variables
 }

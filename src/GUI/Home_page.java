@@ -209,7 +209,7 @@ public class Home_page extends javax.swing.JFrame {
             }
         });
 
-        jPanel3.setBackground(new java.awt.Color(188, 194, 241));
+        jPanel3.setBackground(new java.awt.Color(172, 178, 232));
 
         jButton3.setBackground(new java.awt.Color(204, 204, 204));
         jButton3.setFont(new java.awt.Font("Inter", 3, 12)); // NOI18N
@@ -238,7 +238,7 @@ public class Home_page extends javax.swing.JFrame {
         btn_estudiantes.setFont(new java.awt.Font("Inter", 3, 12)); // NOI18N
         btn_estudiantes.setForeground(new java.awt.Color(0, 0, 0));
         btn_estudiantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Estudiantes.png"))); // NOI18N
-        btn_estudiantes.setText("Estudiantes (F2)");
+        btn_estudiantes.setText("Administrador de usuarios (F2)");
         btn_estudiantes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_estudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,14 +290,14 @@ public class Home_page extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btn_prestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_estudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_estudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_libros, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_configuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_reportes, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addGap(26, 26, 26))
         );
