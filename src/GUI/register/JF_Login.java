@@ -4,22 +4,32 @@
  */
 package GUI.register;
 
+import BD.Login;
 import javax.swing.ImageIcon;
 import Funtions.Buttons.BorderButton;
 import java.awt.Font;
 import Funtions.Text.TextPrompt;
+import Funtions.Utils;
 import GUI.Menu_use;
+import JDialog.Inco_creden;
+import JDialog.Inco_number_work;
+import JDialog.User_no_create;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author luisc
  */
 public class JF_Login extends javax.swing.JFrame {
+
+    public int number_work;
+    public char[] password;
+    public String Stringpassowrd;
 
     /**
      * Creates new form JF_Login
@@ -264,10 +274,43 @@ public class JF_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_JText_Number_trabaActionPerformed
 
     private void borderButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borderButton1ActionPerformed
-        this.dispose();
-        Menu_use menu = new Menu_use();
-        menu.setVisible(true);
-        menu.setLocationRelativeTo(null);
+        // 1️⃣ Validar que el campo no esté vacío
+        String numberWorkText = JText_Number_traba.getText().trim();
+        if (numberWorkText.isEmpty()) {
+            Inco_number_work dialog = new Inco_number_work(null, true);
+            dialog.setVisible(true);
+            return; // salir del método antes de intentar parseInt
+        }
+
+        // 2️⃣ Convertir a entero de manera segura
+        int number_work;
+        try {
+            number_work = Integer.parseInt(numberWorkText);
+        } catch (NumberFormatException e) {
+            User_no_create dialog = new User_no_create(null, true);
+            dialog.setVisible(true);
+            return; // salir si no es un número
+        }
+
+        // 3️⃣ Obtener contraseña
+        char[] pass = jPasswordField1.getPassword();
+        String passwordString = new String(pass);
+
+        // 4️⃣ Hashear si tu base de datos guarda la contraseña encriptada
+        String hashedPassword = Utils.hashPassword(passwordString);
+
+        // 5️⃣ Validar login
+        if (Login.login(number_work, hashedPassword)) {
+            this.dispose();
+            Menu_use menu = new Menu_use();
+            menu.setVisible(true);
+            menu.setLocationRelativeTo(null);
+        } else {
+           Inco_creden dialog = new Inco_creden(null, true);
+            dialog.setVisible(true);
+        }
+
+
     }//GEN-LAST:event_borderButton1ActionPerformed
 
     private void JText_Number_trabaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JText_Number_trabaMouseClicked
@@ -290,7 +333,7 @@ public class JF_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-               JF_Register JF_register = new JF_Register();
+        JF_Register JF_register = new JF_Register();
         JF_register.setVisible(true);
         JF_register.setLocationRelativeTo(null);
         this.dispose();
