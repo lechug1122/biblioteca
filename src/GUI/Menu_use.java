@@ -4,8 +4,17 @@
  */
 package GUI;
 
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -19,6 +28,25 @@ public class Menu_use extends javax.swing.JFrame {
     public Menu_use() {
         initComponents();
           setIconImage(new ImageIcon(getClass().getResource("/IMG/icon.png")).getImage()); //incono del programa
+                Action EnterAction = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+
+                if (focusOwner == borderButton1) {
+                    borderButton1.doClick();
+                } else if (focusOwner == borderButton2) {
+                    borderButton2.doClick();
+                }
+            }
+        };
+
+        // Asociar cada tecla de función con su respectiva acción
+        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap actionMap = getRootPane().getActionMap();
+
+        inputMap.put(KeyStroke.getKeyStroke("ENTER"), "EnterAction");
+        actionMap.put("EnterAction", EnterAction);
     }
 
     /**

@@ -4,6 +4,7 @@
  */
 package Jpanel_Advert;
 
+import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -17,9 +18,13 @@ public class Advert extends javax.swing.JPanel {
     /**
      * Creates new form Advert
      */
-    public Advert(String text) {
+    public Advert(String text, Color StrinColor) {
           texto = text;
+          
         initComponents();
+        this.setBackground(StrinColor);
+        
+        
     }
 
     /**

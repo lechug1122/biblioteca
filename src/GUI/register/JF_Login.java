@@ -5,6 +5,7 @@
 package GUI.register;
 
 import BD.Login;
+import BD.SesionUser;
 import javax.swing.ImageIcon;
 import Funtions.Buttons.BorderButton;
 import java.awt.Font;
@@ -15,11 +16,20 @@ import JDialog.Inco_creden;
 import JDialog.Inco_number_work;
 import JDialog.User_no_create;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -35,6 +45,8 @@ public class JF_Login extends javax.swing.JFrame {
      * Creates new form JF_Login
      */
     public JF_Login() {
+        
+       
         initComponents();
         setResizable(false);
         TextPrompt Number_trabajadores = new TextPrompt("N° de trabajador", JText_Number_traba, Color.WHITE);
@@ -53,6 +65,23 @@ public class JF_Login extends javax.swing.JFrame {
                 }
             }
         });
+              Action EnterAction = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+
+                if (focusOwner == borderButton1) {
+                    borderButton1.doClick();
+                } 
+            }
+        };
+
+        // Asociar cada tecla de función con su respectiva acción
+        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap actionMap = getRootPane().getActionMap();
+
+        inputMap.put(KeyStroke.getKeyStroke("ENTER"), "EnterAction");
+        actionMap.put("EnterAction", EnterAction);
     }
 
     /**
@@ -82,13 +111,13 @@ public class JF_Login extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(148, 156, 220));
 
-        Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login/image_login_1.jpg"))); // NOI18N
+        Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login/4_1.jpg"))); // NOI18N
 
         javax.swing.GroupLayout Jpanel_imageLayout = new javax.swing.GroupLayout(Jpanel_image);
         Jpanel_image.setLayout(Jpanel_imageLayout);
         Jpanel_imageLayout.setHorizontalGroup(
             Jpanel_imageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Image, javax.swing.GroupLayout.PREFERRED_SIZE, 470, Short.MAX_VALUE)
+            .addComponent(Image)
         );
         Jpanel_imageLayout.setVerticalGroup(
             Jpanel_imageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,7 +220,7 @@ public class JF_Login extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(Jpanel_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -300,7 +329,12 @@ public class JF_Login extends javax.swing.JFrame {
         String hashedPassword = Utils.hashPassword(passwordString);
 
         // 5️⃣ Validar login
-        if (Login.login(number_work, hashedPassword)) {
+        if (Login.login(number_work, passwordString)) {
+                String nombreUsuario = Login.getNombreUsuario(number_work);
+                
+               SesionUser.iniciarSesion(number_work, nombreUsuario);
+
+
             this.dispose();
             Menu_use menu = new Menu_use();
             menu.setVisible(true);

@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import BD.SesionUser;
 import Funtions.FechaHora;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
@@ -23,7 +24,7 @@ import GUI.register.JF_Login;
  * @author luisc
  */
 public class inputs_library extends javax.swing.JFrame {
-
+        String name = SesionUser.getNombre();
     /**
      * Creates new form Home_page
      */
@@ -45,7 +46,7 @@ public class inputs_library extends javax.swing.JFrame {
             }
         });
         timer.start();
-
+        
     }
 
     /**
@@ -59,6 +60,7 @@ public class inputs_library extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         NAVBAR = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         FechaHoraLabel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -76,15 +78,21 @@ public class inputs_library extends javax.swing.JFrame {
         NAVBAR.setBackground(new java.awt.Color(172, 178, 232));
         NAVBAR.setPreferredSize(new java.awt.Dimension(1244, 137));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/borde.png"))); // NOI18N
+
         javax.swing.GroupLayout NAVBARLayout = new javax.swing.GroupLayout(NAVBAR);
         NAVBAR.setLayout(NAVBARLayout);
         NAVBARLayout.setHorizontalGroup(
             NAVBARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(NAVBARLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         NAVBARLayout.setVerticalGroup(
             NAVBARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 107, Short.MAX_VALUE)
+            .addGroup(NAVBARLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 7, Short.MAX_VALUE))
         );
 
         FechaHoraLabel.setBackground(new java.awt.Color(172, 178, 232));
@@ -154,7 +162,7 @@ public class inputs_library extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imp_principal/cambiar (1).png"))); // NOI18N
-        jButton1.setText("Luis Angel Oritz");
+        jButton1.setText(name);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -173,7 +181,7 @@ public class inputs_library extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(NAVBAR, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(NAVBAR, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(713, 713, 713)
@@ -233,6 +241,7 @@ public class inputs_library extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
         this.dispose();
         //--------------Login--------------------------------
         //llamamos la clasede login
@@ -291,6 +300,7 @@ public class inputs_library extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

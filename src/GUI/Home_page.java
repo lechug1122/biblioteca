@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import BD.SesionUser;
 import Funtions.FechaHora;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
@@ -35,12 +36,14 @@ import javax.swing.KeyStroke;
  * @author luisc
  */
 public class Home_page extends javax.swing.JFrame {
-
+        String name = SesionUser.getNombre();
+   
     /**
      * Creates new form Home_page
      */
     public Home_page() {
         setUndecorated(true); // Elimina la barra de título y bordes
+       
         setTitle("Administracion de biblioteca");
         initComponents();
         //incono 
@@ -54,6 +57,7 @@ public class Home_page extends javax.swing.JFrame {
                 // Crea una instancia de FechaHora
                 FechaHora fh = new FechaHora();
                 jLabel4.setText(fh.getFechaHora());
+                
             }
         });
         timer.start();
@@ -202,7 +206,7 @@ public class Home_page extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imp_principal/cambiar (1).png"))); // NOI18N
-        jButton1.setText("Luis Angel Oritz");
+        jButton1.setText(name);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -314,7 +318,7 @@ public class Home_page extends javax.swing.JFrame {
             .addComponent(btn_prestamos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/border.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/borde.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

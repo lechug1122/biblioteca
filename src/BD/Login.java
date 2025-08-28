@@ -36,4 +36,27 @@ public static boolean login(int numberWork, String password) {
     return false;
 }
 
+public static String getNombreUsuario(int numberWork) {
+    String sql = "SELECT \"Name\", \"apellido\" FROM public.\"Users\" WHERE \"Number_work\" = ?";
+    String nombreCompleto = null;
+
+    try (Connection conn = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:5432/biblioteca", "postgres", "admin");
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+        
+        ps.setInt(1, numberWork);
+
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            String nombre = rs.getString("Name");
+            String apellido = rs.getString("apellido");  // Cambia "LastName" por el nombre real de la columna
+            nombreCompleto = nombre + " " + apellido;   // Concatenar nombre + apellido
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return nombreCompleto; // Devuelve null si no lo encuentra
+}
+
 }

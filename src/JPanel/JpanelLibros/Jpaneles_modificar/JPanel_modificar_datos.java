@@ -342,7 +342,7 @@ public class JPanel_modificar_datos extends javax.swing.JPanel {
             LabelCR.setIcon(mcd);
             
         } else {  // Crear y mostrar el panel de advertencia
-            Advert advertPanel = new Advert("Ingrese un Titulo de un libro.");
+            Advert advertPanel = new Advert("Ingrese un Titulo de un libro.",Color.YELLOW);
 
             // Agrega el panel de advertencia al JFrame
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
