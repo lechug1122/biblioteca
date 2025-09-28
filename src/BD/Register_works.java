@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package BD;
+import datos.Libro;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -80,4 +81,5 @@ public static boolean existeUsuario(int nWork, String nombreCompleto, String ema
     }
     return false;
 }
+
 }

@@ -4,9 +4,11 @@
  */
 package JPanel;
 
+import JPanel.JpanelLibros.JPanel_Categorias;
 import JPanel.JpanelLibros.JPanel_Eliminar;
 import JPanel.JpanelLibros.Jpaneles_modificar.JPanel_Modificar;
 import JPanel.JpanelLibros.JPanel_nuevo;
+import JPanel.JpanelLibros.Jpanel_Export;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -82,9 +84,7 @@ timer.start(); // Inicia el timer
 
         jPanel7.setBackground(new java.awt.Color(204, 204, 204));
 
-        btn_nuevo.setBackground(new java.awt.Color(255, 255, 255));
         btn_nuevo.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        btn_nuevo.setForeground(new java.awt.Color(0, 0, 0));
         btn_nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JDialog/Images_JDialog_products/libro.png"))); // NOI18N
         btn_nuevo.setText("Nuevo ");
         btn_nuevo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -94,9 +94,7 @@ timer.start(); // Inicia el timer
             }
         });
 
-        btn_Modificar.setBackground(new java.awt.Color(255, 255, 255));
         btn_Modificar.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        btn_Modificar.setForeground(new java.awt.Color(0, 0, 0));
         btn_Modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JDialog/Images_JDialog_products/editar.png"))); // NOI18N
         btn_Modificar.setText("Modificar");
         btn_Modificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -106,9 +104,7 @@ timer.start(); // Inicia el timer
             }
         });
 
-        btn_Eliminar.setBackground(new java.awt.Color(255, 255, 255));
         btn_Eliminar.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
-        btn_Eliminar.setForeground(new java.awt.Color(0, 0, 0));
         btn_Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JDialog/Images_JDialog_products/eliminar-producto.png"))); // NOI18N
         btn_Eliminar.setText("Eliminar");
         btn_Eliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -118,19 +114,25 @@ timer.start(); // Inicia el timer
             }
         });
 
-        btn_Categorias.setBackground(new java.awt.Color(255, 255, 255));
         btn_Categorias.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
-        btn_Categorias.setForeground(new java.awt.Color(0, 0, 0));
         btn_Categorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JDialog/Images_JDialog_products/catalogar.png"))); // NOI18N
         btn_Categorias.setText("Categorias");
         btn_Categorias.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_Categorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CategoriasActionPerformed(evt);
+            }
+        });
 
-        btn_Importar.setBackground(new java.awt.Color(255, 255, 255));
         btn_Importar.setFont(new java.awt.Font("Inter", 3, 14)); // NOI18N
-        btn_Importar.setForeground(new java.awt.Color(0, 0, 0));
         btn_Importar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JDialog/Images_JDialog_products/importar.png"))); // NOI18N
         btn_Importar.setText("Importar");
         btn_Importar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_Importar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ImportarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -163,7 +165,6 @@ timer.start(); // Inicia el timer
         );
 
         jLabel1.setFont(new java.awt.Font("Inter", 3, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Libros");
 
         javax.swing.GroupLayout navbarLayout = new javax.swing.GroupLayout(navbar);
@@ -272,6 +273,37 @@ timer.start(); // Inicia el timer
         btn_Categorias.setEnabled(true);
         btn_Importar.setEnabled(true);
     }//GEN-LAST:event_btn_ModificarActionPerformed
+
+    private void btn_ImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ImportarActionPerformed
+                          Jpanel_Export pl = new Jpanel_Export();
+        pl.setLocation(0, 0);
+        pl.setSize(content.getWidth(), content.getHeight());
+        content.removeAll();
+        content.add(pl, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+        btn_nuevo.setEnabled(true);
+        btn_Modificar.setEnabled(true);
+        btn_Eliminar.setEnabled(true);
+        btn_Categorias.setEnabled(true);
+        btn_Importar.setEnabled(false);
+    }//GEN-LAST:event_btn_ImportarActionPerformed
+
+    private void btn_CategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CategoriasActionPerformed
+        // TODO add your handling code here:
+                                  JPanel_Categorias pl = new JPanel_Categorias();
+        pl.setLocation(0, 0);
+        pl.setSize(content.getWidth(), content.getHeight());
+        content.removeAll();
+        content.add(pl, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+        btn_nuevo.setEnabled(true);
+        btn_Modificar.setEnabled(true);
+        btn_Eliminar.setEnabled(true);
+        btn_Categorias.setEnabled(false);
+        btn_Importar.setEnabled(true);
+    }//GEN-LAST:event_btn_CategoriasActionPerformed
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

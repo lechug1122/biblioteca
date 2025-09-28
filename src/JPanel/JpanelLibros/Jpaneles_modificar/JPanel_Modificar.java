@@ -4,10 +4,19 @@
  */
 package JPanel.JpanelLibros.Jpaneles_modificar;
 
+import BD.register_books;
 import Funtions.Text.TextPrompt;
 import JPanel.JpanelLibros.JPanel_nuevo;
+import Jpanel_Advert.Advert;
+import datos.Libro;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 /**
  *
@@ -15,13 +24,15 @@ import java.awt.Color;
  */
 public class JPanel_Modificar extends javax.swing.JPanel {
 
+    public String code;
+
     /**
      * Creates new form JPanel_Modificar
      */
     public JPanel_Modificar() {
         initComponents();
-        TextPrompt codigo_barras = new TextPrompt("Codigo de Barras", code_barras ,Color.DARK_GRAY);
-        
+        TextPrompt codigo_barras = new TextPrompt("Codigo de Barras", code_barras, Color.DARK_GRAY);
+
     }
 
     /**
@@ -138,14 +149,100 @@ public class JPanel_Modificar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                   JPanel_modificar_datos pl = new JPanel_modificar_datos();
-        pl.setLocation(0, 0);
-        pl.setSize(content.getWidth(), content.getHeight());
-        content.removeAll();
-        content.add(pl, BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
-       
+        code = code_barras.getText();
+
+        if (!code.trim().isEmpty()) {
+            register_books reg = new register_books();
+
+            if (reg.exist_book(code, "null")) {
+                Libro libro = reg.getBook(code);
+
+                if (libro != null) {
+                    Jpanel_modificar_datos pl = new Jpanel_modificar_datos(code);
+                    pl.setLocation(0, 0);
+                    pl.setSize(content.getWidth(), content.getHeight());
+                    content.removeAll();
+                    content.add(pl, BorderLayout.CENTER);
+                    content.revalidate();
+                    content.repaint();
+
+                }
+            } else {
+                Advert advertPanel = new Advert("Libro no registrado en la base de datos.", Color.YELLOW);
+
+                // Agrega el panel de advertencia al JFrame
+                JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                frame.getContentPane().add(advertPanel, BorderLayout.CENTER);
+
+                // Forza el redibujado del JFrame
+                frame.revalidate();
+                frame.repaint();
+
+                // Centrar el panel de advertencia
+                Dimension frameSize = frame.getSize();
+                Dimension panelSize = advertPanel.getPreferredSize();
+                advertPanel.setBounds(
+                        (frameSize.width - panelSize.width) / 2,
+                        (frameSize.height - panelSize.height) / 2,
+                        panelSize.width,
+                        panelSize.height
+                );
+
+                advertPanel.setVisible(true);
+
+                // Crea un Timer que oculta el panel después de 1.5 segundos (1500 ms)
+                Timer timer = new Timer(1500, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        advertPanel.setVisible(false);
+                        frame.getContentPane().remove(advertPanel);
+                        frame.revalidate();
+                        frame.repaint();
+                    }
+                });
+                timer.setRepeats(false); // El Timer solo debe ejecutarse una vez
+                timer.start();
+
+            }
+
+        } else {
+            Advert advertPanel = new Advert("Ingrese Codigo de Barras.", Color.YELLOW);
+
+            // Agrega el panel de advertencia al JFrame
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            frame.getContentPane().add(advertPanel, BorderLayout.CENTER);
+
+            // Forza el redibujado del JFrame
+            frame.revalidate();
+            frame.repaint();
+
+            // Centrar el panel de advertencia
+            Dimension frameSize = frame.getSize();
+            Dimension panelSize = advertPanel.getPreferredSize();
+            advertPanel.setBounds(
+                    (frameSize.width - panelSize.width) / 2,
+                    (frameSize.height - panelSize.height) / 2,
+                    panelSize.width,
+                    panelSize.height
+            );
+
+            advertPanel.setVisible(true);
+
+            // Crea un Timer que oculta el panel después de 1.5 segundos (1500 ms)
+            Timer timer = new Timer(1500, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    advertPanel.setVisible(false);
+                    frame.getContentPane().remove(advertPanel);
+                    frame.revalidate();
+                    frame.repaint();
+                }
+            });
+            timer.setRepeats(false); // El Timer solo debe ejecutarse una vez
+            timer.start();
+
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

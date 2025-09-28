@@ -4,11 +4,13 @@
  */
 package BD;
 
+import datos.Libro;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 /**
  *
  * @author luisc
@@ -63,6 +65,83 @@ String sql = "INSERT INTO public.libros " +
 
     return false; // ❌ No existe
 }
+public Libro getBook(String barcode) {
+    String sql = "SELECT code_barras, name_book, autor, categoria, cantidad_copias, editorial, num_pag " +
+                 "FROM public.libros WHERE code_barras = ?";
 
-     
+    try (Connection conn = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:5432/biblioteca", "postgres", "admin");
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        
+        pstmt.setString(1, barcode);
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                return new Libro(
+                    rs.getString("code_barras"),
+                    rs.getString("name_book"),
+                    rs.getString("autor"),
+                    rs.getString("categoria"),
+                    rs.getInt("cantidad_copias"),
+                    rs.getString("editorial"),
+                    rs.getInt("num_pag")
+                );
+            }
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return null; // no encontrado
+}
+
+public boolean deleteBook(String barcode) {
+    String sql = "DELETE FROM public.libros WHERE code_barras = ?";
+
+    try (Connection conn = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:5432/biblioteca", "postgres", "admin");
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        pstmt.setString(1, barcode);
+        int rowsAffected = pstmt.executeUpdate();
+
+        return rowsAffected > 0;
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return false;
+}
+ public boolean updateBook(String code_barras, String Autor, String categoria, 
+                          int cantidad_copias, String name, String editorial, int num_pag) {
+    String sql = "UPDATE public.libros SET " +
+                 "name_book = ?, " +
+                 "autor = ?, " +
+                 "categoria = ?, " +
+                 "cantidad_copias = ?, " +
+                 "editorial = ?, " +
+                 "num_pag = ? " +
+                 "WHERE code_barras = ?";
+
+    try (Connection conn = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:5432/biblioteca", "postgres", "admin");
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        
+        pstmt.setString(1, name);
+        pstmt.setString(2, Autor);
+        pstmt.setString(3, categoria);
+        pstmt.setInt(4, cantidad_copias);
+        pstmt.setString(5, editorial);
+        pstmt.setInt(6, num_pag);
+        pstmt.setString(7, code_barras);
+
+        int rowsAffected = pstmt.executeUpdate();
+        return rowsAffected > 0; // true si actualizó algo
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return false; // no se actualizó
+ }
 }

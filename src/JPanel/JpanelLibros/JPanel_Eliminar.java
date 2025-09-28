@@ -4,14 +4,29 @@
  */
 package JPanel.JpanelLibros;
 
+import BD.register_books;
 import Funtions.Text.TextPrompt;
+import JDialog.Confirm_book;
+import JDialog.Inco_number_work;
+import Jpanel_Advert.Advert;
+import datos.Libro;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 /**
  *
  * @author luisc
  */
 public class JPanel_Eliminar extends javax.swing.JPanel {
+
+    public String code_barras;
 
     /**
      * Creates new form JPanel_Eliminar
@@ -46,6 +61,7 @@ public class JPanel_Eliminar extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1164, 519));
 
@@ -69,6 +85,11 @@ public class JPanel_Eliminar extends javax.swing.JPanel {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Buscar");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Inika", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -100,11 +121,24 @@ public class JPanel_Eliminar extends javax.swing.JPanel {
         jButton3.setForeground(new java.awt.Color(0, 0, 0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JDialog/Images_JDialog_products/cerca.png"))); // NOI18N
         jButton3.setText("Eliminar Libro");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Inika", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 0, 0));
         jButton4.setText("Cancelar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Inika", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -133,9 +167,10 @@ public class JPanel_Eliminar extends javax.swing.JPanel {
                                     .addComponent(jLabel9))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -143,7 +178,7 @@ public class JPanel_Eliminar extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(27, 27, 27)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(322, Short.MAX_VALUE)))
+                    .addContainerGap(472, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +199,9 @@ public class JPanel_Eliminar extends javax.swing.JPanel {
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel9)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
@@ -219,12 +256,164 @@ public class JPanel_Eliminar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        code_barras = jTextField1.getText();
+
+        if (!code_barras.trim().isEmpty()) {
+            register_books reg = new register_books();
+
+            if (reg.exist_book(code_barras, "null")) {
+                Libro libro = reg.getBook(code_barras);
+
+                if (libro != null) {
+                    // Llenar etiquetas o campos del JPanel
+                    jLabel6.setText(libro.getName_book());
+                    jLabel3.setText(libro.getAutor());
+                    jLabel8.setText(libro.getCategoria());
+                    jLabel10.setText(String.valueOf(libro.getCantidad_copias()));
+
+                }
+            } else {
+                Advert advertPanel = new Advert("Libro no registrado en la base de datos.", Color.YELLOW);
+
+                // Agrega el panel de advertencia al JFrame
+                JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                frame.getContentPane().add(advertPanel, BorderLayout.CENTER);
+
+                // Forza el redibujado del JFrame
+                frame.revalidate();
+                frame.repaint();
+
+                // Centrar el panel de advertencia
+                Dimension frameSize = frame.getSize();
+                Dimension panelSize = advertPanel.getPreferredSize();
+                advertPanel.setBounds(
+                        (frameSize.width - panelSize.width) / 2,
+                        (frameSize.height - panelSize.height) / 2,
+                        panelSize.width,
+                        panelSize.height
+                );
+
+                advertPanel.setVisible(true);
+
+                // Crea un Timer que oculta el panel después de 1.5 segundos (1500 ms)
+                Timer timer = new Timer(1500, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        advertPanel.setVisible(false);
+                        frame.getContentPane().remove(advertPanel);
+                        frame.revalidate();
+                        frame.repaint();
+                    }
+                });
+                timer.setRepeats(false); // El Timer solo debe ejecutarse una vez
+                timer.start();
+
+            }
+
+        } else {
+            Advert advertPanel = new Advert("Ingrese Codigo de Barras.", Color.YELLOW);
+
+            // Agrega el panel de advertencia al JFrame
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            frame.getContentPane().add(advertPanel, BorderLayout.CENTER);
+
+            // Forza el redibujado del JFrame
+            frame.revalidate();
+            frame.repaint();
+
+            // Centrar el panel de advertencia
+            Dimension frameSize = frame.getSize();
+            Dimension panelSize = advertPanel.getPreferredSize();
+            advertPanel.setBounds(
+                    (frameSize.width - panelSize.width) / 2,
+                    (frameSize.height - panelSize.height) / 2,
+                    panelSize.width,
+                    panelSize.height
+            );
+
+            advertPanel.setVisible(true);
+
+            // Crea un Timer que oculta el panel después de 1.5 segundos (1500 ms)
+            Timer timer = new Timer(1500, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    advertPanel.setVisible(false);
+                    frame.getContentPane().remove(advertPanel);
+                    frame.revalidate();
+                    frame.repaint();
+                }
+            });
+            timer.setRepeats(false); // El Timer solo debe ejecutarse una vez
+            timer.start();
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+
+        jLabel6.setText("");
+        jLabel3.setText("");
+        jLabel8.setText("");
+        jLabel10.setText("");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Confirm_book dialog = new Confirm_book(null, true, code_barras);
+        dialog.setVisible(true);
+
+        if (dialog.isConfirmed()) {
+            Advert advertPanel = new Advert("Libro Eliminado.", Color.YELLOW);
+
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+
+            // Calcula posición centrada
+            Dimension frameSize = frame.getSize();
+            Dimension panelSize = advertPanel.getPreferredSize();
+            advertPanel.setBounds(
+                    (frameSize.width - panelSize.width) / 2,
+                    (frameSize.height - panelSize.height) / 2,
+                    panelSize.width,
+                    panelSize.height
+            );
+
+            // Añadir en la capa superior
+            frame.getLayeredPane().add(advertPanel, JLayeredPane.POPUP_LAYER);
+            advertPanel.setVisible(true);
+
+            // Ocultar después de 1.5s
+            Timer timer = new Timer(1500, e -> {
+                advertPanel.setVisible(false);
+                frame.getLayeredPane().remove(advertPanel);
+                frame.getLayeredPane().revalidate();
+                frame.getLayeredPane().repaint();
+            });
+            timer.setRepeats(false);
+            timer.start();
+
+            // Limpia labels
+            jLabel6.setText("");
+            jLabel3.setText("");
+            jLabel8.setText("");
+            jLabel10.setText("");
+
+        } else {
+            // El usuario canceló
+            System.out.println("Cancelado");
+        }
+        // salir del método antes de intentar parseInt
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

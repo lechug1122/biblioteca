@@ -6,7 +6,7 @@ package JPanel.prestamo;
 
 import JPanel.*;
 import Funtions.Text.TextPrompt;
-import JPanel.JpanelLibros.Jpaneles_modificar.JPanel_modificar_datos;
+
 import JPanel.prestamo.Jpanel_prestamo_libro;
 import java.awt.BorderLayout;
 import java.awt.Color;
