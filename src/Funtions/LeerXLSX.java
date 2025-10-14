@@ -41,7 +41,7 @@ public class LeerXLSX {
                 String nombreLibro = getCeldaString(row.getCell(0));
                 String autor = getCeldaString(row.getCell(1));
                 String codigoBarras = getCeldaString(row.getCell(2));
-                String categoria = getCeldaString(row.getCell(3));
+                int categoria = (int) getCeldaNumerica(row.getCell(3));
                 String editorial = getCeldaString(row.getCell(4));
                 int numPaginas = (int) getCeldaNumerica(row.getCell(5));
                 int cantidadCopias = (int) getCeldaNumerica(row.getCell(6));

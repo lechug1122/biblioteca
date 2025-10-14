@@ -4,6 +4,14 @@
  */
 package JPanel.JpanelLibros;
 
+import JDialog.create_departamento;
+import Jpanel_Advert.Advert;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author luisc
@@ -15,6 +23,16 @@ public class JPanel_Categorias extends javax.swing.JPanel {
      */
     public JPanel_Categorias() {
         initComponents();
+           javax.swing.JButton[] botones = { btn_nuevo, btn_nuevo1, btn_nuevo2 };
+
+    for (javax.swing.JButton boton : botones) {
+        boton.setBackground(Color.WHITE);          // Fondo blanco
+        boton.setOpaque(true);                     // Que pinte el color
+        boton.setContentAreaFilled(true);          // Rellenar área del botón
+        boton.setFocusPainted(false);              // Sin borde azul al enfocar
+        boton.setBorderPainted(true);              // Mantener borde visible
+        boton.setBorder(javax.swing.BorderFactory.createLineBorder(Color.BLACK)); // Borde negro
+    }
     }
 
     /**
@@ -122,7 +140,26 @@ public class JPanel_Categorias extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
+create_departamento create_depa = new create_departamento();
+                // Agrega el panel de advertencia al JFrame
+                JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                frame.getContentPane().add(create_depa, BorderLayout.CENTER);
 
+                // Forza el redibujado del JFrame
+                frame.revalidate();
+                frame.repaint();
+
+                // Centrar el panel de advertencia
+                Dimension frameSize = frame.getSize();
+                Dimension panelSize = create_depa.getPreferredSize();
+                create_depa.setBounds(
+                        (frameSize.width - panelSize.width) / 2,
+                        (frameSize.height - panelSize.height) / 2,
+                        panelSize.width,
+                        panelSize.height
+                );
+
+                create_depa.setVisible(true);
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
     private void btn_nuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevo1ActionPerformed

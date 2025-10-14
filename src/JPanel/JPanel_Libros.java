@@ -10,8 +10,10 @@ import JPanel.JpanelLibros.Jpaneles_modificar.JPanel_Modificar;
 import JPanel.JpanelLibros.JPanel_nuevo;
 import JPanel.JpanelLibros.Jpanel_Export;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -26,7 +28,17 @@ public class JPanel_Libros extends javax.swing.JPanel {
      * Creates new form NewJPanel_Prestamos
      */
     public JPanel_Libros() {
-        initComponents();
+      initComponents();
+          // ---- Botones blancos ----
+    JButton[] botones = { btn_nuevo, btn_Modificar, btn_Eliminar, btn_Categorias, btn_Importar };
+
+    for (JButton boton : botones) {
+        boton.setBackground(Color.WHITE);          // Fondo blanco
+        boton.setOpaque(true);                     // Que se pinte el fondo
+        boton.setContentAreaFilled(true);          // Forzar que se rellene el área
+        boton.setFocusPainted(false);              // Sin borde azul al enfocar
+        boton.setBorderPainted(true);              // Mantener el borde negro
+    }
         // Dentro de tu método o acción:
 Timer timer = new Timer(10, new ActionListener() {
     public void actionPerformed(ActionEvent e) {
@@ -51,7 +63,7 @@ Timer timer = new Timer(10, new ActionListener() {
 timer.setRepeats(false); // Ejecutar solo una vez
 timer.start(); // Inicia el timer
   
-  
+    
     }
 
     /**

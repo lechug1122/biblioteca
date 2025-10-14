@@ -16,7 +16,7 @@ import java.sql.SQLException;
  * @author luisc
  */
 public class register_books {
-     public boolean register_books(String code_barras, String Autor, String categoria, 
+     public boolean register_books(String code_barras, String Autor, int categoria, 
                           int cantidad_copias, String name, String editorial, int num_pag) {
     
 String sql = "INSERT INTO public.libros " +
@@ -29,7 +29,7 @@ String sql = "INSERT INTO public.libros " +
             
             pstmt.setString(1, code_barras);
             pstmt.setString(2, Autor);
-            pstmt.setString(3, categoria);
+            pstmt.setInt(3, categoria);
             pstmt.setInt(4, cantidad_copias);
             pstmt.setString(5, name); // ← aquí agregas el nombre del libro
             pstmt.setString(6, editorial);
@@ -80,7 +80,7 @@ public Libro getBook(String barcode) {
                     rs.getString("code_barras"),
                     rs.getString("name_book"),
                     rs.getString("autor"),
-                    rs.getString("categoria"),
+                    rs.getInt("categoria"),
                     rs.getInt("cantidad_copias"),
                     rs.getString("editorial"),
                     rs.getInt("num_pag")
@@ -112,7 +112,7 @@ public boolean deleteBook(String barcode) {
     }
     return false;
 }
- public boolean updateBook(String code_barras, String Autor, String categoria, 
+ public boolean updateBook(String code_barras, String Autor, int categoria, 
                           int cantidad_copias, String name, String editorial, int num_pag) {
     String sql = "UPDATE public.libros SET " +
                  "name_book = ?, " +
@@ -129,7 +129,7 @@ public boolean deleteBook(String barcode) {
         
         pstmt.setString(1, name);
         pstmt.setString(2, Autor);
-        pstmt.setString(3, categoria);
+        pstmt.setInt(3, categoria);
         pstmt.setInt(4, cantidad_copias);
         pstmt.setString(5, editorial);
         pstmt.setInt(6, num_pag);

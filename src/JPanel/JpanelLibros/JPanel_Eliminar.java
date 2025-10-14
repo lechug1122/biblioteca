@@ -4,6 +4,7 @@
  */
 package JPanel.JpanelLibros;
 
+import BD.categoria;
 import BD.register_books;
 import Funtions.Text.TextPrompt;
 import JDialog.Confirm_book;
@@ -261,7 +262,7 @@ public class JPanel_Eliminar extends javax.swing.JPanel {
 
         if (!code_barras.trim().isEmpty()) {
             register_books reg = new register_books();
-
+            categoria cat = new categoria();
             if (reg.exist_book(code_barras, "null")) {
                 Libro libro = reg.getBook(code_barras);
 
@@ -269,7 +270,7 @@ public class JPanel_Eliminar extends javax.swing.JPanel {
                     // Llenar etiquetas o campos del JPanel
                     jLabel6.setText(libro.getName_book());
                     jLabel3.setText(libro.getAutor());
-                    jLabel8.setText(libro.getCategoria());
+                    jLabel8.setText(cat.getCategoryNameById(libro.getCategoria()));
                     jLabel10.setText(String.valueOf(libro.getCantidad_copias()));
 
                 }

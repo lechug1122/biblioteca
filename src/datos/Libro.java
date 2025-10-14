@@ -12,13 +12,13 @@ public class Libro {
     private String code_barras;
     private String name_book;
     private String autor;
-    private String categoria;
+    private int categoria;
     private int cantidad_copias;
     private String editorial;
     private int num_pag;
 
 public Libro(String code_barras, String name_book, String autor, 
-             String categoria, int cantidad_copias, 
+             int categoria, int cantidad_copias, 
              String editorial, int num_pag) {
     this.code_barras = code_barras;
     this.name_book = name_book;
@@ -34,7 +34,7 @@ public Libro(String code_barras, String name_book, String autor,
     public String getCode_barras() { return code_barras; }
     public String getName_book() { return name_book; }
     public String getAutor() { return autor; }
-    public String getCategoria() { return categoria; }
+    public int getCategoria() { return categoria; }
     public int getCantidad_copias() { return cantidad_copias; }
     public String getEditorial() { return editorial; }
     public int getNum_pag() { return num_pag; }
