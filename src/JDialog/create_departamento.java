@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.UIManager;
-
+import JPanel.JpanelLibros.JPanel_Categorias;
 /**
  *
  * @author luisc
@@ -26,12 +26,12 @@ import javax.swing.UIManager;
 public class create_departamento extends javax.swing.JPanel {
 
     private String name_catego;
-
+  private JPanel_Categorias panelCategorias;
     /**
      * Creates new form create_departamento
      */
-    public create_departamento() {
-
+    public create_departamento(JPanel_Categorias panelCategorias) {
+        this.panelCategorias = panelCategorias;  // guardar referencia
         initComponents();
         TextPrompt name_cate = new TextPrompt("Nombre de categoría", name_categoria, Color.DARK_GRAY);
     }
@@ -87,19 +87,17 @@ public class create_departamento extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(324, 324, 324))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(57, 57, 57)
-                                .addComponent(jLabel1)
-                                .addGap(166, 166, 166))))
+                                .addComponent(jLabel1)))
+                        .addGap(166, 166, 166))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -196,6 +194,12 @@ public class create_departamento extends javax.swing.JPanel {
                     JOptionPane.INFORMATION_MESSAGE,
                     icon
             );
+              // 🔹 Refrescar la lista del panel de categorías (si lo tenemos)
+                if (panelCategorias != null) {
+                    panelCategorias.cargarCategorias();
+                }
+       // Cerrar el JDialog que contiene este panel
+    SwingUtilities.getWindowAncestor(this).dispose();
         } else {
             // ❌ Error al registrar
             JOptionPane.showMessageDialog(this,
@@ -210,8 +214,8 @@ public class create_departamento extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
+          // Cerrar el JDialog que contiene este panel
+    SwingUtilities.getWindowAncestor(this).dispose();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

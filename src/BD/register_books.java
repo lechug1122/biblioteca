@@ -11,11 +11,15 @@ import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author luisc
  */
 public class register_books {
+    
      public boolean register_books(String code_barras, String Autor, int categoria, 
                           int cantidad_copias, String name, String editorial, int num_pag) {
     
@@ -144,4 +148,95 @@ public boolean deleteBook(String barcode) {
 
     return false; // no se actualizó
  }
+ public List<Libro> getBooksByCategory(int idCategoria) {
+    List<Libro> libros = new ArrayList<>();
+
+    String sql = "SELECT code_barras, name_book, autor, categoria, " +
+                 "cantidad_copias, editorial, num_pag " +
+                 "FROM public.libros " +
+                 "WHERE categoria = ? " +
+                 "ORDER BY name_book";
+
+    try (Connection conn = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:5432/biblioteca", "postgres", "admin");
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        pstmt.setInt(1, idCategoria);
+        try (ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Libro libro = new Libro(
+                        rs.getString("code_barras"),
+                        rs.getString("name_book"),
+                        rs.getString("autor"),
+                        rs.getInt("categoria"),
+                        rs.getInt("cantidad_copias"),
+                        rs.getString("editorial"),
+                        rs.getInt("num_pag")
+                );
+                libros.add(libro);
+            }
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return libros;   // lista vacía si no hay libros o si hubo error
+}
+ public List<Libro> searchBooksByText(String texto) {
+    List<Libro> resultado = new ArrayList<>();
+
+    String sql = "SELECT code_barras, name_book, autor, categoria, " +
+                 "cantidad_copias, editorial, num_pag " +
+                 "FROM public.libros " +
+                 "WHERE LOWER(name_book) LIKE LOWER(?) " +     // ← aquí puedes cambiar a descripcion
+                 "ORDER BY name_book ASC";
+
+    try (Connection conn = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:5432/biblioteca", "postgres", "admin");
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        pstmt.setString(1, "%" + texto + "%");
+
+        try (ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                Libro libro = new Libro(
+                        rs.getString("code_barras"),
+                        rs.getString("name_book"),
+                        rs.getString("autor"),
+                        rs.getInt("categoria"),
+                        rs.getInt("cantidad_copias"),
+                        rs.getString("editorial"),
+                        rs.getInt("num_pag")
+                );
+                resultado.add(libro);
+            }
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return resultado;
+}
+public boolean moveBooksToCategory(int fromCategoriaId, int toCategoriaId) {
+    String sql = "UPDATE public.libros SET categoria = ? WHERE categoria = ?";
+
+    try (Connection conn = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:5432/biblioteca", "postgres", "admin");
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        pstmt.setInt(1, toCategoriaId);
+        pstmt.setInt(2, fromCategoriaId);
+
+        pstmt.executeUpdate();  // aunque no haya libros, no es error
+        return true;
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return false;
+}
+
 }

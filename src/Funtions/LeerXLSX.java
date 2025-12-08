@@ -4,6 +4,7 @@
  */
 package Funtions;
 
+import BD.categoria;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
@@ -42,6 +43,49 @@ public class LeerXLSX {
                 String autor = getCeldaString(row.getCell(1));
                 String codigoBarras = getCeldaString(row.getCell(2));
                 int categoria = (int) getCeldaNumerica(row.getCell(3));
+                // Leer texto tal cual del Excel
+                String valorCategoria = getCeldaString(row.getCell(3)).trim();
+
+                categoria catDAO = new categoria();
+                int idCategoria = -1;
+
+// 1️⃣ Si es número → significa que Excel usaba ID
+                if (valorCategoria.matches("\\d+")) {
+
+                    idCategoria = Integer.parseInt(valorCategoria);
+
+                    // Verificar si ese ID existe
+                    if (!catDAO.categoryIdExists(idCategoria)) {
+
+                        // Si NO existe → crear categoría nueva AUTOMÁTICAMENTE
+                        String nombreAuto = "Categoria " + idCategoria;
+
+                        idCategoria = catDAO.createNewCategory_xsls(nombreAuto);
+
+                        if (idCategoria == -1) {
+                            JOptionPane.showMessageDialog(null,
+                                    "No se pudo crear la categoría '" + nombreAuto + "'",
+                                    "Error",
+                                    JOptionPane.ERROR_MESSAGE);
+                            continue;
+                        }
+                    }
+                } // 2️⃣ Si NO es número → se trata como NOMBRE
+                else {
+
+                    // Si viene vacío → usar "Sin categoría"
+                    if (valorCategoria.isEmpty()) {
+                        valorCategoria = "Sin categoría";
+                    }
+
+                    idCategoria = catDAO.getCategoryIdByName(valorCategoria);
+
+                    // Si no existe → crearla
+                    if (idCategoria == -1) {
+                        idCategoria = catDAO.createNewCategory_xsls(valorCategoria);
+                    }
+                }
+
                 String editorial = getCeldaString(row.getCell(4));
                 int numPaginas = (int) getCeldaNumerica(row.getCell(5));
                 int cantidadCopias = (int) getCeldaNumerica(row.getCell(6));
@@ -56,7 +100,7 @@ public class LeerXLSX {
                     );
                 } else {
                     // Guardar en la base de datos si no existe
-                    boolean exito = db.register_books(codigoBarras, autor, categoria, cantidadCopias,
+                    boolean exito = db.register_books(codigoBarras, autor, idCategoria, cantidadCopias,
                             nombreLibro, editorial, numPaginas);
                     librosRegistrados++;
                 }
